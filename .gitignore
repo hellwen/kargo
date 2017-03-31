@@ -16,3 +16,6 @@ temp
 /ssh-bastion.conf
 **/*.sw[pon]
 vagrant/
+# added by hellwen.wu
+inventory/inventory.cfg
+ca.crt

@@ -1,4 +1,7 @@
 ---
+- name: Hosts | Ensure hostname set
+  hostname: name={{ inventory_hostname }}
+
 - name: Hosts | populate inventory into hosts file
   blockinfile:
     dest: /etc/hosts

@@ -1,0 +1,15 @@
+---
+- name: Delete the docker container files
+  file: path=/var/lib/docker state=absent
+
+- name: lvm | Create docker vg
+  lvg: vg=vgdocker pvs={{ pv }}
+
+- name: lvm | Create docker lv
+  lvol: vg=vgdocker lv=lvdocker size=100%FREE shrink=False state=present
+
+- name: lvm | create filesystem
+  filesystem: fstype=xfs dev=/dev/vgdocker/lvdocker
+
+- name: lvm | mount
+  mount: name=/var/lib/docker src=/dev/vgdocker/lvdocker fstype=xfs state=mounted
